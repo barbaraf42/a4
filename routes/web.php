@@ -14,14 +14,14 @@
 
 Route::get('/', 'AddressController@index');
 
-Route::get('/add', 'AddressController@add');
-Route::post('/add', 'AddressController@save');
+Route::get('/addresses/add', 'AddressController@add');
+Route::post('/addresses/add', 'AddressController@saveTheNewAddress');
 
-Route::get('/edit/{id}', 'AddressController@edit');
-Route::post('/edit/{id}', 'AddressController@save');
+Route::get('/addresses/edit/{id}', 'AddressController@edit');
+Route::post('/addresses/edit', 'AddressController@saveTheEdit');
 
-Route::get('/delete', 'AddressController@delete');
-Route::post('/delete', 'AddressController@save');
+Route::get('/addresses/delete/{id}', 'AddressController@delete');
+Route::post('/addresses/delete', 'AddressController@saveTheDelete');
 
 
 Route::get('/debug', function() {

@@ -18,11 +18,11 @@ class AddressesTableSeeder extends Seeder
 
         # Array of address data to add
         $addresses = [
-            ['placename1', '123 Main Street', 'Anytown', 'MA', 01234],
-            ['placename2', '32A Side Street', 'Anycity', 'NY', 12345],
-            ['placename3', '300 Main Avenue', 'New York', 'NY', 12345],
-            ['placename4', '12345 Computer Drive', 'San Francisco', 'CA', 98765],
-            ['placename5', '15 DWA Road', 'Boston', 'MA', 01357],
+            ['placename1', '123 Main Street', 'Anytown', 'MA', '01234'],
+            ['placename2', '32A Side Street', 'Anycity', 'NY', '12345'],
+            ['placename3', '300 Main Avenue', 'New York', 'NY', '12345'],
+            ['placename4', '12345 Computer Drive', 'San Francisco', 'CA', '98765'],
+            ['placename5', '15 DWA Road', 'Boston', 'MA', '01357'],
         ];
 
         # Initiate a new timestamp we can use for created_at/updated_at fields

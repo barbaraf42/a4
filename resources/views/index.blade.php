@@ -2,6 +2,7 @@
 
 @section('content')
 
+
     <p>
         Save all your favorite places here!
     </p>
@@ -10,12 +11,13 @@
 
     @foreach($addresses as $address)
 
-        <h3>{{ $address['name'] }}</h3>
+        <h3>{{ $address['place_name'] }}</h3>
 
-        <a href="addresses/edit">Edit this address</a>
+        <a href="addresses/edit/{{ $address->id }}">Edit this address</a>
         <br />
-        <a href="addresses/delete">Delete this address</a>
+        <a href="addresses/delete/{{ $address->id }}">Delete this address</a>
 
     @endforeach
+
 
 @endsection

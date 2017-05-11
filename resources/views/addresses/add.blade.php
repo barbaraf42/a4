@@ -20,8 +20,27 @@
     <form method='POST' action='add'>
         {{ csrf_field() }}
 
-        <label for='title'>Title</label>
-        <input type='text' name='title' id='title'>
+        <label for='placeName'>Place Name</label>
+        <input type='text' name='placeName' id='placeName'>
+        <br />
+        <label for='street'>Street Address</label>
+        <input type='text' name='street' id='street'>
+        <br />
+        <label for='city'>City/Town</label>
+        <input type='text' name='city' id='city'>
+        <br />
+        <label for='state'>State</label>
+        <select name='state' id='state'>
+            @for ($i=1; $i<=56; $i++)
+                <option value="{{ $i }}">
+                    {{ $i }}
+                </option>
+            @endfor
+        </select>
+        <br />
+        <label for='zip'>Zip Code</label>
+        <input type='text' name='zip' id='zip'>
+        <br />
 
         <input type='submit' value='Add address'>
     </form>

@@ -4,37 +4,153 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Address;
+use App\Tag;
+
 class AddressController extends Controller
 {
 
+
     public function index() {
-        return view('index');
+
+        # get all addresses for home page
+        $addresses = Address::orderBy('place_name')->get();
+
+        return view('index', ['addresses' => $addresses]);
     }
+
 
     public function add() {
         return view('addresses.add');
     }
 
-    public function edit($address) {
+
+    public function edit($id) {
+
+        # find this address by id
+        $address = Address::with('tags')->find($id);
+
         return view('addresses.edit')->with(['address' => $address]);
     }
 
-    public function delete() {
-        return view('addresses.delete');
+
+    public function delete($id) {
+
+        # find this address by id
+        $address = Address::with('tags')->find($id);
+
+        return view('addresses.delete')->with(['address' => $address]);
     }
 
-    public function save(Request $request) {
 
-        $title = $request->input('title');
+    public function saveTheNewAddress(Request $request) {
 
-        #
-        #
-        # [...Code will eventually go here to actually save this book to a database...]
-        #
-        #
+        # validate
+        $this->validate($request, [
+            'placeName' => 'required',
+            'street'=> 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zip' => 'min:5|max:5|nullable',
+        ]);
 
+        # assign variables
+        $placeName = $request->input('placeName');
+        $street = $request->input('street');
+        $city = $request->input('city');
+        $state = $request->input('state');
+        $zip = $request->input('zip');
+
+        # calculate map link
+        $addressForMapLink = [
+            $placeName,
+            $street,
+            $city,
+            $state,
+            $zip,
+        ];
+        $mapLink = 'http://maps.google.com';
+
+        # create new row
+        $address = new Address();
+
+        # fill new row
+        $address->place_name = $placeName;
+        $address->street = $street;
+        $address->city = $city;
+        $address->state = $state;
+        $address->zip = $zip;
+        $address->map_link = $mapLink;
+
+        # save
+        $address->save();
+
+        # go to home page
         return redirect('/');
-        
+
     }
+
+
+    public function saveTheEdit(Request $request) {
+
+        # validate
+        $this->validate($request, [
+            'placeName' => 'required',
+            'street'=> 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zip' => 'min:5|max:5|nullable',
+        ]);
+
+        # assign variables
+        $placeName = $request->input('placeName');
+        $street = $request->input('street');
+        $city = $request->input('city');
+        $state = $request->input('state');
+        $zip = $request->input('zip');
+
+        # calculate map link
+        $addressForMapLink = [
+            $placeName,
+            $street,
+            $city,
+            $state,
+            $zip,
+        ];
+        $mapLink = 'http://maps.google.com';
+
+        # get existing row from db
+        $address = Address::find($request->id);
+
+        # update existing row
+        $address->place_name = $placeName;
+        $address->street = $street;
+        $address->city = $city;
+        $address->state = $state;
+        $address->zip = $zip;
+        $address->map_link = $mapLink;
+
+        # save
+        $address->save();
+
+        # go to home page
+        return redirect('/');
+
+    }
+
+
+    public function saveTheDelete(Request $request) {
+
+        # find this address by id
+        $address = Address::with('tags')->find($request->id);
+
+        # delete this address
+        $address->tags()->detach();
+        $address->delete();
+
+        # go to home page
+        return redirect('/');
+    }
+
 
 }

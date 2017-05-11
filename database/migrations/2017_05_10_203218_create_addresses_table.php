@@ -29,10 +29,10 @@ class CreateAddressesTable extends Migration
     		$table->string('street');
     		$table->string('city');
     		$table->string('state');
-            $table->integer('zip');
+            $table->string('zip')->nullable();
     		$table->text('map_link');
 
-    		# FYI: We're skipping the 'tags' field for now; more on that later.
+    		# TAGS.
 
     	});
 
