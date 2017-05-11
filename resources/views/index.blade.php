@@ -18,7 +18,13 @@
             <li>
 
                 <p>
-                    {{ $address['place_name'] }}
+                    {{ $address->place_name }}
+                </p>
+
+                <p class="tags">
+                    @foreach($address->tags as $tag)
+                        <span>{{ $tag->tag_name }}</span>
+                    @endforeach
                 </p>
 
                 <a href="{{ $address->map_link }}" target="_blank">Map</a> |

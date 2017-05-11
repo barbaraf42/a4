@@ -17,7 +17,7 @@ class AddressController extends Controller
     public function index() {
 
         # get all addresses for home page
-        $addresses = Address::orderBy('id')->get();
+        $addresses = Address::with('tags')->orderBy('id')->get();
 
         return view('index')->with([
             'addresses' => $addresses,
@@ -26,17 +26,34 @@ class AddressController extends Controller
 
 
     public function add() {
-        return view('addresses.add');
+
+        # get all tags for add page
+        $tagsList = Tag::orderBy('tag_name')->get();
+
+        return view('addresses.add')->with([
+            'tagsList' => $tagsList,
+        ]);
     }
 
 
     public function edit($id) {
 
+        # get all tags for edit page
+        $tagsList = Tag::orderBy('tag_name')->get();
+
         # find this address by id
         $address = Address::with('tags')->find($id);
 
+        # get this tags on only this address
+        $tagsForThisAddress = [];
+        foreach($address->tags as $tag) {
+            $tagsForThisAddress[] = $tag->tag_name;
+        }
+
         return view('addresses.edit')->with([
             'address' => $address,
+            'tagsList' => $tagsList,
+            'tagsForThisAddress' => $tagsForThisAddress,
         ]);
     }
 
@@ -59,7 +76,6 @@ class AddressController extends Controller
             'placeName' => 'required',
             'street'=> 'required',
             'city' => 'required',
-            'state' => 'required',
             'zip' => 'min:5|max:5|nullable',
         ]);
 
@@ -69,6 +85,14 @@ class AddressController extends Controller
         $city = $request->input('city');
         $state = $request->input('state');
         $zip = $request->input('zip');
+
+        # If there were tags selected...
+        if($request->input('tags')) {
+            $tags = $request->input('tags');
+        }
+        else {
+            $tags = [];
+        }
 
         # calculate map link
         $addressForMapLink = [
@@ -93,6 +117,12 @@ class AddressController extends Controller
         # save
         $address->save();
 
+        # Sync tags, if any
+        $address->tags()->sync($tags);
+
+        # save with tags
+        $address->save();
+
         # go to home page
         return redirect('/');
 
@@ -106,7 +136,6 @@ class AddressController extends Controller
             'placeName' => 'required',
             'street'=> 'required',
             'city' => 'required',
-            'state' => 'required',
             'zip' => 'min:5|max:5|nullable',
         ]);
 
@@ -116,6 +145,14 @@ class AddressController extends Controller
         $city = $request->input('city');
         $state = $request->input('state');
         $zip = $request->input('zip');
+
+        # If there were tags selected...
+        if($request->input('tags')) {
+            $tags = $request->input('tags');
+        }
+        else {
+            $tags = [];
+        }
 
         # calculate map link
         $addressForMapLink = [
@@ -140,6 +177,12 @@ class AddressController extends Controller
         # save
         $address->save();
 
+        # Sync tags, if any
+        $address->tags()->sync($tags);
+
+        # save with tags
+        $address->save();
+
         # go to home page
         return redirect('/');
 
@@ -162,7 +205,7 @@ class AddressController extends Controller
 
     # sharing global variable in views from stackoverflow
     # http://stackoverflow.com/questions/29715813/laravel-5-global-blade-view-variable-available-in-all-templates
-    # state list from Wikipedia: https://simple.wikipedia.org/wiki/List_of_U.S._states
+    # state list from Wikipedia https://simple.wikipedia.org/wiki/List_of_U.S._states
     public $statesList = [
         ['AL', 'Alabama'],
         ['AK', 'Alaska'],

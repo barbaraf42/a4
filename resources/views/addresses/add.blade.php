@@ -24,7 +24,7 @@
             <div class="left">
                 <label for='placeName'>Place Name</label>
                 <br />
-                <span class="required">Required</span>
+                <span class="required">(Required)</span>
             </div>
             <div class="right">
                 <input type='text' name='placeName' id='placeName'>
@@ -35,7 +35,7 @@
             <div class="left">
                 <label for='street'>Street Address</label>
                 <br />
-                <span class="required">Required</span>
+                <span class="required">(Required)</span>
             </div>
             <div class="right">
                 <input type='text' name='street' id='street'>
@@ -46,7 +46,7 @@
             <div class="left">
                 <label for='city'>City/Town</label>
                 <br />
-                <span class="required">Required</span>
+                <span class="required">(Required)</span>
             </div>
             <div class="right">
                 <input type='text' name='city' id='city'>
@@ -74,6 +74,23 @@
             </div>
             <div class="right">
                 <input type='text' name='zip' id='zip'>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div class="left">
+                <label for='tags'>Tags</label>
+                <br />
+                (Use Cmd or Ctrl<br />to select more<br />than one)
+            </div>
+            <div class="right">
+                <select name='tags[]' id='tags' multiple>
+                    @foreach ($tagsList as $tag)
+                        <option value="{{ $tag->id }}">
+                            {{ $tag->tag_name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
         </div>
 

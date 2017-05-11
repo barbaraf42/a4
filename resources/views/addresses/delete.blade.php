@@ -13,7 +13,12 @@
         {{ $address->place_name }}
     </h3>
 
-
+    <p class="tags">
+        @foreach($address->tags as $tag)
+            <span>{{ $tag->tag_name }}</span>
+        @endforeach
+    </p>
+    
     {{ $address->street }}
     <br />
     {{ $address->city }}, {{ $address->state }} {{ $address->zip }}
