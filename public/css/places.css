@@ -1,9 +1,80 @@
 body {
     font-family: Calibri, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
+}
+
+.content {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+h2 {
+    margin-bottom: 45px;
 }
 
 ul {
     list-style: none;
     padding-left: 0px;
+    margin-top: 30px;
+}
+
+li {
+    padding-bottom: 15px;
+}
+
+li p {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:active,
+a:hover {
+    text-decoration: underline;
+}
+
+input,
+select {
+    margin-bottom: 15px;
+}
+
+input[type="text"] {
+    width: 250px;
+    padding: 7px;
+}
+
+select {
+    width: 267px;
+    padding: 7px;
+}
+
+.left {
+    float: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    float: right;
+}
+
+.form-item {
+    clear: both;
+}
+
+.submit input {
+    margin-top: 20px;
+    padding: 7px;
 }

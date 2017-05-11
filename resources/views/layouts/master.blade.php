@@ -6,24 +6,24 @@
     </title>
 
 	<meta charset='utf-8'>
-    <link rel="stylesheet" href="css/places.css" />
+    <link rel="stylesheet" href="/css/places.css" />
 
     @stack('head')
 
 </head>
 <body>
 
-	<h1>My Favorite Places</h1>
+    <div class="content">
 
-	<section>
-		@yield('content')
-	</section>
+        <h1>My Favorite Places</h1>
 
-	<footer>
-		&copy; {{ date('Y') }}
-	</footer>
+    	<section>
+    		@yield('content')
+    	</section>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="js/states.js"></script>
 
     @stack('body')

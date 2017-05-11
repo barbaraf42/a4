@@ -15,37 +15,69 @@
         </ul>
     @endif
 
-    <h2>Edit an address</h2>
+    <h2>Edit a place</h2>
 
     <form method='POST' action='/addresses/edit'>
         {{ csrf_field() }}
 
-        <label for='placeName'>Place Name</label>
-        <input type='text' name='placeName' id='placeName' value='{{ $address->place_name }}'>
-        <br />
-        <label for='street'>Street Address</label>
-        <input type='text' name='street' id='street' value='{{ $address->street }}'>
-        <br />
-        <label for='city'>City/Town</label>
-        <input type='text' name='city' id='city' value='{{ $address->city }}'>
-        <br />
-        <label for='state'>State</label>
-        <select name='state' id='state'>
-            @for ($i=0; $i<=55; $i++)
-                <option value="{{ $i }}"> <!-- {{ ($i == old('numberOfPeople')) ? 'selected' : '' }} -->
-                    {{ $i }}
-                </option>
-            @endfor
-        </select>
-        <br />
-        <label for='zip'>Zip Code</label>
-        <input type='text' name='zip' id='zip' value='{{ $address->zip }}'>
-        <br />
+        <div class="form-item">
+            <div class="left">
+                <label for='placeName'>Place Name</label>
+            </div>
+            <div class="right">
+                <input type='text' name='placeName' id='placeName' value='{{ $address->place_name }}'>
+            </div>
+        </div>
 
-        <input type='hidden' name='id' value='{{ $address->id }}'?>
-        
-        <input type='submit' value='Update address'>
+        <div class="form-item">
+            <div class="left">
+                <label for='street'>Street Address</label>
+            </div>
+            <div class="right">
+                <input type='text' name='street' id='street' value='{{ $address->street }}'>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div class="left">
+                <label for='city'>City/Town</label>
+            </div>
+            <div class="right">
+                <input type='text' name='city' id='city' value='{{ $address->city }}'>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div class="left">
+                <label for='state'>State</label>
+            </div>
+            <div class="right">
+                <select name='state' id='state'>
+                    @for ($i=0; $i<=55; $i++)
+                        <option value="{{ $i }}"> <!-- {{ ($i == old('numberOfPeople')) ? 'selected' : '' }} -->
+                            {{ $i }}
+                        </option>
+                    @endfor
+                </select>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div class="left">
+                <label for='zip'>Zip Code</label>
+            </div>
+            <div class="right">
+                <input type='text' name='zip' id='zip' value='{{ $address->zip }}'>
+            </div>
+        </div>
+
+        <div class="form-item center submit">
+            <input type='hidden' name='id' value='{{ $address->id }}'?>
+            <input type='submit' value='Update place'>
+        </div>
+
     </form>
 
+    <a href="/">Cancel</a>
 
 @endsection

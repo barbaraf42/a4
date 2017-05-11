@@ -7,7 +7,7 @@
         Save all your favorite places here!
     </p>
 
-    <a href="addresses/add">Add</a>
+    <a href="addresses/add">Add a new place</a>
 
     <ul>
 
@@ -18,16 +18,16 @@
                 <p>
                     {{ $address['place_name'] }}
                 </p>
-                <a href="{{ $address->map_link }}" target="_blank">See map</a>
-                <br />
-                <a href="addresses/edit/{{ $address->id }}">Edit this address</a>
-                <br />
-                <a href="addresses/delete/{{ $address->id }}">Delete this address</a>
+
+                <a href="{{ $address->map_link }}" target="_blank">Map</a> |
+                <a href="addresses/edit/{{ $address->id }}">Edit</a> |
+                <a href="addresses/delete/{{ $address->id }}">Delete</a>
 
             </li>
 
         @endforeach
 
     </ul>
+
 
 @endsection
