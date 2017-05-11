@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Http\Requests\SanitizeFormRequest;
+
+use View;
 
 use App\Address;
 use App\Tag;
@@ -16,7 +19,9 @@ class AddressController extends Controller
         # get all addresses for home page
         $addresses = Address::orderBy('id')->get();
 
-        return view('index', ['addresses' => $addresses]);
+        return view('index')->with([
+            'addresses' => $addresses,
+        ]);
     }
 
 
@@ -30,7 +35,9 @@ class AddressController extends Controller
         # find this address by id
         $address = Address::with('tags')->find($id);
 
-        return view('addresses.edit')->with(['address' => $address]);
+        return view('addresses.edit')->with([
+            'address' => $address,
+        ]);
     }
 
 
@@ -39,11 +46,13 @@ class AddressController extends Controller
         # find this address by id
         $address = Address::with('tags')->find($id);
 
-        return view('addresses.delete')->with(['address' => $address]);
+        return view('addresses.delete')->with([
+            'address' => $address
+        ]);
     }
 
 
-    public function saveTheNewAddress(Request $request) {
+    public function saveTheNewAddress(SanitizeFormRequest $request) {
 
         # validate
         $this->validate($request, [
@@ -90,7 +99,7 @@ class AddressController extends Controller
     }
 
 
-    public function saveTheEdit(Request $request) {
+    public function saveTheEdit(SanitizeFormRequest $request) {
 
         # validate
         $this->validate($request, [
@@ -148,6 +157,73 @@ class AddressController extends Controller
 
         # go to home page
         return redirect('/');
+    }
+
+
+    # sharing global variable in views from stackoverflow
+    # http://stackoverflow.com/questions/29715813/laravel-5-global-blade-view-variable-available-in-all-templates
+    # state list from Wikipedia: https://simple.wikipedia.org/wiki/List_of_U.S._states
+    public $statesList = [
+        ['AL', 'Alabama'],
+        ['AK', 'Alaska'],
+        ['AZ', 'Arizona'],
+        ['AR', 'Arkansas'],
+        ['AS', 'American Samoa'],
+        ['CA', 'California'],
+        ['CO', 'Colorado'],
+        ['CT', 'Connecticut'],
+        ['DC', 'District of Columbia'],
+        ['DE', 'Delaware'],
+        ['FL', 'Florida'],
+        ['GA', 'Georgia'],
+        ['GU', 'Guam'],
+        ['HI', 'Hawaii'],
+        ['ID', 'Idaho'],
+        ['IL', 'Illinois'],
+        ['IN', 'Indiana'],
+        ['IA', 'Iowa'],
+        ['KS', 'Kansas'],
+        ['KY', 'Kentucky'],
+        ['LA', 'Louisiana'],
+        ['ME', 'Maine'],
+        ['MD', 'Maryland'],
+        ['MA', 'Massachusetts'],
+        ['MI', 'Michigan'],
+        ['MN', 'Minnesota'],
+        ['MS', 'Mississippi'],
+        ['MO', 'Missouri'],
+        ['MT', 'Montana'],
+        ['NE', 'Nebraska'],
+        ['NV', 'Nevada'],
+        ['NH', 'New Hampshire'],
+        ['NJ', 'New Jersey'],
+        ['NM', 'New Mexico'],
+        ['NY', 'New York'],
+        ['NC', 'North Carolina'],
+        ['ND', 'North Dakota'],
+        ['MP', 'Northern Mariana Islands'],
+        ['OH', 'Ohio'],
+        ['OK', 'Oklahoma'],
+        ['OR', 'Oregon'],
+        ['PA', 'Pennsylvania'],
+        ['PR', 'Puerto Rico'],
+        ['RI', 'Rhode Island'],
+        ['SC', 'South Carolina'],
+        ['SD', 'South Dakota'],
+        ['TN', 'Tennessee'],
+        ['TX', 'Texas'],
+        ['VI', 'United States Virgin Islands'],
+        ['UT', 'Utah'],
+        ['VT', 'Vermont'],
+        ['VA', 'Virginia'],
+        ['WA', 'Washington'],
+        ['WV', 'West Virginia'],
+        ['WI', 'Wisconsin'],
+        ['WY', 'Wyoming'],
+    ];
+
+    public function __construct() {
+       View::share ('statesList', $this->statesList);
     }
 
 

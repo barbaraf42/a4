@@ -78,3 +78,12 @@ select {
     margin-top: 20px;
     padding: 7px;
 }
+
+.errors,
+.required {
+    color: red;
+}
+
+.add-link {
+    margin-top: 30px;
+}

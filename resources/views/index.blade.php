@@ -7,7 +7,9 @@
         Save all your favorite places here!
     </p>
 
-    <a href="addresses/add">Add a new place</a>
+    <p class="add-link">
+        <a href="addresses/add">Add a new place</a>
+    </p>
 
     <ul>
 

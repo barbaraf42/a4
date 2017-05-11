@@ -8,7 +8,7 @@
 
 
     @if(count($errors) > 0)
-        <ul>
+        <ul class="errors">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
@@ -23,6 +23,8 @@
         <div class="form-item">
             <div class="left">
                 <label for='placeName'>Place Name</label>
+                <br />
+                <span class="required">Required</span>
             </div>
             <div class="right">
                 <input type='text' name='placeName' id='placeName'>
@@ -32,6 +34,8 @@
         <div class="form-item">
             <div class="left">
                 <label for='street'>Street Address</label>
+                <br />
+                <span class="required">Required</span>
             </div>
             <div class="right">
                 <input type='text' name='street' id='street'>
@@ -41,6 +45,8 @@
         <div class="form-item">
             <div class="left">
                 <label for='city'>City/Town</label>
+                <br />
+                <span class="required">Required</span>
             </div>
             <div class="right">
                 <input type='text' name='city' id='city'>
@@ -53,11 +59,11 @@
             </div>
             <div class="right">
                 <select name='state' id='state'>
-                    @for ($i=1; $i<=56; $i++)
-                        <option value="{{ $i }}">
-                            {{ $i }}
+                    @foreach ($statesList as $state)
+                        <option value="{{ $state[0] }}">
+                            {{ $state[0] }} - {{ $state[1] }}
                         </option>
-                    @endfor
+                    @endforeach
                 </select>
             </div>
         </div>
