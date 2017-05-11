@@ -15,6 +15,9 @@ class CreateAddressTagTable extends Migration
     {
         Schema::create('address_tag', function (Blueprint $table) {
 
+            # Blatantly and thankfully taken from the Professor's notes!
+
+            # id and timestamps
             $table->increments('id');
             $table->timestamps();
 
@@ -22,7 +25,7 @@ class CreateAddressTagTable extends Migration
             $table->integer('address_id')->unsigned();
             $table->integer('tag_id')->unsigned();
 
-            # Make foreign keys
+            # Make them foreign keys
             $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('tag_id')->references('id')->on('tags');
 

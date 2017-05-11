@@ -15,27 +15,30 @@ class AddressTagTableSeeder extends Seeder
     public function run()
     {
 
-        # First, create an array of all the books we want to associate tags with
-        # The *key* will be the book title, and the *value* will be an array of tags.
-        # Note: purposefully omitting the Harry Potter books to demonstrate untagged books
+        # Blatantly and thankfully taken from the Professor's notes!
+
+        # all sample addresses with sample tags
         $addresses =[
-            'placename1' => ['novel','fiction','classic','wealth'],
-            'placename2' => ['novel','fiction','classic','women'],
-            'placename3' => ['autobiography','nonfiction','classic','women'],
+            'home' => ['home'],
+            'work' => ['work'],
+            'class' => ['work', 'fun', 'education'],
+            'Kimball Farm!' => ['fun', 'food', 'travel'],
+            'museum in NY' => ['fun', 'culture', 'education', 'travel'],
         ];
 
-        # Now loop through the above array, creating a new pivot for each book to tag
         foreach($addresses as $placeName => $tags) {
 
-            # First get the book
+            # get address from address table
             $address = Address::where('place_name','like',$placeName)->first();
 
-            # Now loop through each tag for this book, adding the pivot
             foreach($tags as $tagName) {
+
+                # get tag from tag table
                 $tag = Tag::where('tag_name','LIKE',$tagName)->first();
 
-                # Connect this tag to this book
+                # save tag to this address
                 $address->tags()->save($tag);
+
             }
 
         }

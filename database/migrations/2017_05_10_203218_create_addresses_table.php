@@ -17,7 +17,6 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
 
     		# Increments method will make a Primary, Auto-Incrementing field.
-    		# Most tables start off this way
     		$table->increments('id');
 
     		# This generates two columns: `created_at` and `updated_at` to
@@ -31,8 +30,6 @@ class CreateAddressesTable extends Migration
     		$table->string('state');
             $table->string('zip')->nullable();
     		$table->text('map_link');
-
-    		# TAGS.
 
     	});
 

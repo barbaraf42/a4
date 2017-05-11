@@ -18,11 +18,11 @@ class AddressesTableSeeder extends Seeder
 
         # Array of address data to add
         $addresses = [
-            ['placename1', '123 Main Street', 'Anytown', 'MA', '01234'],
-            ['placename2', '32A Side Street', 'Anycity', 'NY', '12345'],
-            ['placename3', '300 Main Avenue', 'New York', 'NY', '12345'],
-            ['placename4', '12345 Computer Drive', 'San Francisco', 'CA', '98765'],
-            ['placename5', '15 DWA Road', 'Boston', 'MA', '01357'],
+            ['home', '50 Park Plaza', 'Boston', 'MA', '02116'],
+            ['work', '26 Oxford Street', 'Cambridge', 'MA', '02138'],
+            ['class', '1 Harvard Yard', 'Cambridge', 'MA', '02138'],
+            ['Kimball Farm!', '400 Littleton Rd', 'Westford', 'MA', '01886'],
+            ['museum in NY', 'Central Park West & 79th St', 'New York', 'NY', '10024'],
         ];
 
         # Initiate a new timestamp we can use for created_at/updated_at fields
@@ -34,8 +34,10 @@ class AddressesTableSeeder extends Seeder
             # the address before. That way each address will have unique timestamps.
             $timestampForThisAddress = $timestamp->addDay()->toDateTimeString();
 
-            # create google map link
-            $mapLinkForThisAddress = 'http://maps.google.com';
+            # create google map link - copy array, remove placename, call function
+            $addressForMapLink = $address;
+            $placeName = array_shift($addressForMapLink);
+            $mapLinkForThisAddress = Address::createMapLink($addressForMapLink);
 
             # add data
             Address::insert([

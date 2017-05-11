@@ -9,15 +9,25 @@
 
     <a href="addresses/add">Add</a>
 
-    @foreach($addresses as $address)
+    <ul>
 
-        <h3>{{ $address['place_name'] }}</h3>
+        @foreach($addresses as $address)
 
-        <a href="addresses/edit/{{ $address->id }}">Edit this address</a>
-        <br />
-        <a href="addresses/delete/{{ $address->id }}">Delete this address</a>
+            <li>
 
-    @endforeach
+                <p>
+                    {{ $address['place_name'] }}
+                </p>
+                <a href="{{ $address->map_link }}" target="_blank">See map</a>
+                <br />
+                <a href="addresses/edit/{{ $address->id }}">Edit this address</a>
+                <br />
+                <a href="addresses/delete/{{ $address->id }}">Delete this address</a>
 
+            </li>
+
+        @endforeach
+
+    </ul>
 
 @endsection

@@ -14,7 +14,7 @@ class AddressController extends Controller
     public function index() {
 
         # get all addresses for home page
-        $addresses = Address::orderBy('place_name')->get();
+        $addresses = Address::orderBy('id')->get();
 
         return view('index', ['addresses' => $addresses]);
     }
@@ -63,13 +63,12 @@ class AddressController extends Controller
 
         # calculate map link
         $addressForMapLink = [
-            $placeName,
             $street,
             $city,
             $state,
             $zip,
         ];
-        $mapLink = 'http://maps.google.com';
+        $mapLink = Address::createMapLink($addressForMapLink);
 
         # create new row
         $address = new Address();
@@ -111,13 +110,12 @@ class AddressController extends Controller
 
         # calculate map link
         $addressForMapLink = [
-            $placeName,
             $street,
             $city,
             $state,
             $zip,
         ];
-        $mapLink = 'http://maps.google.com';
+        $mapLink = Address::createMapLink($addressForMapLink);
 
         # get existing row from db
         $address = Address::find($request->id);
