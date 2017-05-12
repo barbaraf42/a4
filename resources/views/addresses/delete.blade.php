@@ -28,8 +28,8 @@
         {{ csrf_field() }}
 
         <div class="form-item submit">
-            <input type='hidden' name='id' value='{{ $address->id }}'?>
-            <input type='submit' value='Delete place'>
+            <input type='hidden' name='id' value='{{ $address->id }}' />
+            <input type='submit' value='Delete place' />
         </div>
 
     </form>

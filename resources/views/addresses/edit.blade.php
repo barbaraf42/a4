@@ -27,7 +27,7 @@
                 <span class="required">(Required)</span>
             </div>
             <div class="right">
-                <input type='text' name='placeName' id='placeName' value='{{ $address->place_name }}'>
+                <input type='text' name='placeName' id='placeName' value='{{ $address->place_name }}' />
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                 <span class="required">(Required)</span>
             </div>
             <div class="right">
-                <input type='text' name='street' id='street' value='{{ $address->street }}'>
+                <input type='text' name='street' id='street' value='{{ $address->street }}' />
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                 <span class="required">(Required)</span>
             </div>
             <div class="right">
-                <input type='text' name='city' id='city' value='{{ $address->city }}'>
+                <input type='text' name='city' id='city' value='{{ $address->city }}' />
             </div>
         </div>
 
@@ -73,13 +73,13 @@
                 <label for='zip'>Zip Code</label>
             </div>
             <div class="right">
-                <input type='text' name='zip' id='zip' value='{{ $address->zip }}'>
+                <input type='text' name='zip' id='zip' value='{{ $address->zip }}' />
             </div>
         </div>
 
         <div class="form-item">
             <div class="left">
-                <label for='tags'>Tags</label>
+                <label>Tags</label>
             </div>
             <div class="right all-tags">
                 <div>
@@ -99,8 +99,8 @@
         </div>
 
         <div class="form-item center submit">
-            <input type='hidden' name='id' value='{{ $address->id }}'?>
-            <input type='submit' value='Update place'>
+            <input type='hidden' name='id' value='{{ $address->id }}' />
+            <input type='submit' value='Update place' />
         </div>
 
     </form>

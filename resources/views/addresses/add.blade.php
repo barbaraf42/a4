@@ -27,7 +27,7 @@
                 <span class="required">(Required)</span>
             </div>
             <div class="right">
-                <input type='text' name='placeName' id='placeName'>
+                <input type='text' name='placeName' id='placeName' />
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                 <span class="required">(Required)</span>
             </div>
             <div class="right">
-                <input type='text' name='street' id='street'>
+                <input type='text' name='street' id='street' />
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                 <span class="required">(Required)</span>
             </div>
             <div class="right">
-                <input type='text' name='city' id='city'>
+                <input type='text' name='city' id='city' />
             </div>
         </div>
 
@@ -73,13 +73,13 @@
                 <label for='zip'>Zip Code</label>
             </div>
             <div class="right">
-                <input type='text' name='zip' id='zip'>
+                <input type='text' name='zip' id='zip' />
             </div>
         </div>
 
         <div class="form-item">
             <div class="left">
-                <label for='tags'>Tags</label>
+                <label>Tags</label>
             </div>
             <div class="right all-tags">
                 <div>
@@ -98,7 +98,7 @@
         </div>
 
         <div class="form-item center submit">
-            <input type='submit' value='Add place'>
+            <input type='submit' value='Add place' />
         </div>
 
     </form>

@@ -17,9 +17,9 @@
 
         <h1>Your Favorite Places</h1>
 
-    	<section>
+    	<div>
     		@yield('content')
-    	</section>
+    	</div>
 
 	</div>
 
