@@ -120,7 +120,7 @@ select[multiple] {
 }
 
 .filter-section {
-    padding-bottom: 10px;
+    padding-bottom: 4px;
     margin-top: 5px;
     border-bottom: 1px solid #ccc;
 }
