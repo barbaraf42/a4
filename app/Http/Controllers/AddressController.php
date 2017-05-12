@@ -14,13 +14,103 @@ class AddressController extends Controller
 {
 
 
-    public function index() {
+    public function index(Request $request) {
 
         # get all addresses for home page
-        $addresses = Address::with('tags')->orderBy('id')->get();
+        $addressesList = Address::with('tags')->orderBy('id')->get();
+
+        # prep tags array
+        $tagsToShow = [];
+
+        # prep addresses array
+        $addresses = [];
+
+        # get all tags for home page
+        $tagsList = Tag::orderBy('tag_name')->get();
+
+        # get tag names and ids only
+        $tagNamesAndIds = [
+            '-1' => 'all'
+        ];
+        foreach ($tagsList as $tag) {
+            $tagNamesAndIds[$tag->id] = $tag->tag_name;
+        }
+
+        # prep for filtered tags
+        $tagNameAndId = [
+            '-1' => 'all'
+        ];
+
+        # If tag selected for filtering
+        $tagsFilter = [];
+        if($request->input('tags')) {
+
+            # validate tag list is array
+            $this->validate($request, [
+                'tags' => 'array',
+            ]);
+
+            # turn value into integer, to match tag id, security check
+            $tagsFilter = $request->input('tags');
+            foreach ($tagsFilter as $key => $value) {
+                $tagToCheck = $value;
+            }
+            $tagId = (int)$tagToCheck;
+
+            # assign filtered tag only / "all tags"
+            $tagNameAndId = [
+                $tagId => $tagNamesAndIds[$tagId]
+            ];
+
+            # if specific tag selected...
+            if ($tagId != -1) {
+
+                # add only this tag to tagsToShow array
+                foreach ($tagsList as $tag) {
+                    if ($tag->id == $tagId) {
+                        array_push($tagsToShow, $tag);
+                    }
+                }
+
+                # get addresses with filtered tag
+                foreach ($addressesList as $address) {
+                    foreach ($address->tags as $tag) {
+                        if ($tag->id == $tagId) {
+                            array_push($addresses, $address);
+                        }
+                    }
+                }
+
+            }
+            # else "all tags" is selected, show all tags instead
+            else {
+                $tagsToShow = $tagsList;
+                $addresses = $addressesList;
+            }
+        }
+        # else no request, show all tags instead
+        else {
+            $tagsToShow = $tagsList;
+            $addresses = $addressesList;
+        }
+
 
         return view('index')->with([
             'addresses' => $addresses,
+            'tagNameAndId' => $tagNameAndId,
+            'tagsToShow' => $tagsToShow,
+            'tagsList' => $tagsList,
+        ]);
+    }
+
+
+    public function view($id) {
+
+        # find this address by id
+        $address = Address::with('tags')->find($id);
+
+        return view('addresses.view')->with([
+            'address' => $address
         ]);
     }
 

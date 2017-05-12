@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-    My Favorite Places - Delete a place
+    My Favorite Places - Place details
 @endsection
 
 @section('content')
 
 
-    <h2>Delete a place</h2>
+    <h2>Place Details</h2>
 
     <h3>
         {{ $address->place_name }}
@@ -23,19 +23,13 @@
     <br />
     {{ $address->city }}, {{ $address->state }} {{ $address->zip }}
 
+    <br /><br /><br />
+    <a href="{{ $address->map_link }}" target="_blank">View Map</a> |
+    <a href="/addresses/edit/{{ $address->id }}">Edit</a> |
+    <a href="/addresses/delete/{{ $address->id }}">Delete</a>
 
-    <form method='POST' action='/addresses/delete'>
-        {{ csrf_field() }}
-
-        <div class="form-item submit">
-            <input type='hidden' name='id' value='{{ $address->id }}'?>
-            <input type='submit' value='Delete place'>
-        </div>
-
-    </form>
-
-    <br />
-    <a href="/">Cancel</a>
+    <br /><br /><br />
+    <a href="/">Return to list</a>
 
 
 @endsection

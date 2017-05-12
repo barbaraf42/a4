@@ -14,6 +14,8 @@
 
 Route::get('/', 'AddressController@index');
 
+Route::get('/addresses/view/{id}', 'AddressController@view');
+
 Route::get('/addresses/add', 'AddressController@add');
 Route::post('/addresses/add', 'AddressController@saveTheNewAddress');
 

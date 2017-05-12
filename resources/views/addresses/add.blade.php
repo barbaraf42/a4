@@ -80,17 +80,20 @@
         <div class="form-item">
             <div class="left">
                 <label for='tags'>Tags</label>
-                <br />
-                (Use Cmd or Ctrl<br />to select more<br />than one)
             </div>
-            <div class="right">
-                <select name='tags[]' id='tags' multiple>
+            <div class="right all-tags">
+                <div>
                     @foreach ($tagsList as $tag)
-                        <option value="{{ $tag->id }}">
-                            {{ $tag->tag_name }}
-                        </option>
+                        <input
+                            type='checkbox'
+                            value='{{ $tag->id }}'
+                            id='tag_{{ $tag->id }}'
+                            name='tags[]'
+                            class="checkbox-as-button"
+                        />
+                        <label for='tag_{{ $tag->id }}'>{{ $tag->tag_name }}</label>
                     @endforeach
-                </select>
+                </div>
             </div>
         </div>
 

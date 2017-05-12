@@ -62,6 +62,25 @@ select[multiple] {
     height: 120px;
 }
 
+.checkbox-as-button {
+    display: none;
+}
+
+.checkbox-as-button + label {
+    border: 1px solid #ccc;
+    padding: 3px 5px;
+    background-color: white;
+}
+
+.checkbox-as-button:checked + label {
+    background-color: lightgreen;
+}
+
+.all-tags div {
+    width: 267px;
+    line-height: 30px;
+}
+
 .left {
     float: left;
 }
@@ -90,10 +109,32 @@ select[multiple] {
 
 .add-link {
     margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.filter-title {
+    padding-top: 10px;
+    margin-bottom: 0;
+    font-weight: bold;
+    border-top: 1px solid #ccc;
+}
+
+.filter-section {
+    padding-bottom: 10px;
+    margin-top: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.filter-section select {
+    padding: 2px 2px 3px 2px;
+}
+
+.filter-section input {
+    padding: 2px 5px;
 }
 
 .tags {
-    font-size: 12px;
+    font-size: 14px;
     color: green;
     font-weight: normal;
 }
