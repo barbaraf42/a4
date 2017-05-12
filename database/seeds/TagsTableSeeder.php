@@ -15,7 +15,7 @@ class TagsTableSeeder extends Seeder
     {
 
         # list of tags
-        $tags = ['bank', 'culture', 'education', 'emergency', 'food', 'fun', 'government', 'home', 'sports', 'travel', 'work'];
+        $tags = ['culture', 'education', 'emergency', 'food', 'fun', 'government', 'health', 'home', 'money', 'nature', 'shopping', 'sports', 'travel', 'water', 'work'];
 
         # Initiate a new timestamp we can use for created_at/updated_at fields
         $timestamp = Carbon\Carbon::now()->subDays(count($tags));
