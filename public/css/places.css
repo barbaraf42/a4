@@ -58,10 +58,6 @@ select {
     padding: 7px;
 }
 
-select[multiple] {
-    height: 120px;
-}
-
 .checkbox-as-button {
     display: none;
 }

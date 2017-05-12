@@ -14,7 +14,7 @@ class AddressesTableSeeder extends Seeder
     public function run()
     {
 
-        # Blatantly and gratefully copied from Professor's notes!
+        # Gratefully borrowed from the Professor's notes!
 
         # Array of address data to add
         $addresses = [

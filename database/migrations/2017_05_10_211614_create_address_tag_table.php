@@ -15,7 +15,7 @@ class CreateAddressTagTable extends Migration
     {
         Schema::create('address_tag', function (Blueprint $table) {
 
-            # Blatantly and thankfully taken from the Professor's notes!
+            # Gratefully borrowed from the Professor's notes!
 
             # id and timestamps
             $table->increments('id');

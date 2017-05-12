@@ -15,7 +15,7 @@ class AddressTagTableSeeder extends Seeder
     public function run()
     {
 
-        # Blatantly and thankfully taken from the Professor's notes!
+        # Gratefully borrowed from the Professor's notes!
 
         # all sample addresses with sample tags
         $addresses =[

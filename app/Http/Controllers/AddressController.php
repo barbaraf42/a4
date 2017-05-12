@@ -19,9 +19,6 @@ class AddressController extends Controller
         # get all addresses for home page
         $addressesList = Address::with('tags')->orderBy('id')->get();
 
-        # prep tags array
-        $tagsToShow = [];
-
         # prep addresses array
         $addresses = [];
 
@@ -65,13 +62,6 @@ class AddressController extends Controller
             # if specific tag selected...
             if ($tagId != -1) {
 
-                # add only this tag to tagsToShow array
-                foreach ($tagsList as $tag) {
-                    if ($tag->id == $tagId) {
-                        array_push($tagsToShow, $tag);
-                    }
-                }
-
                 # get addresses with filtered tag
                 foreach ($addressesList as $address) {
                     foreach ($address->tags as $tag) {
@@ -84,13 +74,11 @@ class AddressController extends Controller
             }
             # else "all tags" is selected, show all tags instead
             else {
-                $tagsToShow = $tagsList;
                 $addresses = $addressesList;
             }
         }
         # else no request, show all tags instead
         else {
-            $tagsToShow = $tagsList;
             $addresses = $addressesList;
         }
 
@@ -98,7 +86,6 @@ class AddressController extends Controller
         return view('index')->with([
             'addresses' => $addresses,
             'tagNameAndId' => $tagNameAndId,
-            'tagsToShow' => $tagsToShow,
             'tagsList' => $tagsList,
         ]);
     }
