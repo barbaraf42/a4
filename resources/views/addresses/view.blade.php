@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-    My Favorite Places - Place details
+    Your Favorite Places - Place details
 @endsection
 
 @section('content')
 
 
-    <h2>Place Details</h2>
+    <h2>Place details</h2>
 
     <h3>
         {{ $address->place_name }}

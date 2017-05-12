@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    My Favorite Places - Add a new place
+    Your Favorite Places - Add a new place
 @endsection
 
 @section('content')

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>
-        @yield('title', 'My Favorite Places')
+        @yield('title', 'Your Favorite Places')
     </title>
 
 	<meta charset='utf-8'>
@@ -15,7 +15,7 @@
 
     <div class="content">
 
-        <h1>My Favorite Places</h1>
+        <h1>Your Favorite Places</h1>
 
     	<section>
     		@yield('content')
